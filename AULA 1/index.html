@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <div class="container">
+            <div class="calculator">
+                <h1>Calculadora de IMC</h1>
+                <p class="subtitle">Índice de Massa Corporal</p>
+
+                <form id="imcForm"">
+                    <div class="input-group">
+                            <label for="peso">Peso (kg):</label>
+                            <input type="number" id="peso" step="0.1" min="1" max="500" required>
+                      </div>      
+
+                      <div class="input-group">
+                            <label for="altura">Altura (m):</label>
+                            <input type="number" id="altura" step="0.1" min="0.5" max="2.5" required>
+                      </div>
+
+                      <button type="submit">Calcular IMC</button>
+                </form>
+
+                <div id="resultado" class="resultado hidden">
+                        <h2>Seu  IMC é:</h2>
+                        <div class="imc-valor" id="imcvalor"></div>
+                        <div class="classificação" id="classificação"></div>
+                        <div class="dica" id="dica"></div>
+                </div>
+
+                <div class="tabela-referencia">
+                        <h3>Tabela de Referencia</h3>
+                        <table>
+                                <tr>
+                                        <td>Abaixo de 18,5</td>
+                                        <td class="abaixo">Abaixo do peso</td>                           
+                                </tr>
+                                <tr>
+                                        <td>18,5 - 24,9</td>
+                                        <td class="normal">Peso normal</td>
+                                </tr>
+                                <tr>
+                                        <td>25,0 - 29,9</td>
+                                        <td class="sobrepeso">Sobrepeso</td>
+                                </tr>
+                                <tr>
+                                        <td>30,0 - 34,9</td>
+                                        <td class="obesidade1">Obesidade Grau1</td>
+                                </tr>
+                                <tr>
+                                    <td>35,0 - 39,9</td>
+                                    <td class="obesidade2">Obesidade Grau II</td>
+                                </tr>
+                                <tr>
+                                        <td>Acima de 40,0</td>
+                                        <td class="obesidade3">Obesidade Grau III</td>
+                                </tr>
+                        </table>
+                  </div>      
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="script.js"></script>
+</body>
+</html>

@@ -1,183 +1,241 @@
-// Importar os itens para poder manipular
-
-const form = document.getElementById("imcForm")
-
-const pesoInput = document.getElementById("peso")
-
-const alturaInput = document.getElementById("altura")
-
-const resultadoDiv = document.getElementById("resultado")
-
-const imcValorSpan = document.getElementById("imcValor")
-
-const classificacaoDiv = document.getElementById("classificacao")
-
-const dicaDiv = document.getElementById("dica")
-
- 
-
- 
-
-// Função para calcular o IMC
-
-function calcularIMC(peso, altura) {
-
-return peso / (altura * altura)
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// Function para classificar o IMC
-
-function classificarIMC (imc) {
-
-if (imc < 18.5) {
-
-return {
-
-classificacao: "Abaixo do peso",
-
-classe: "abaixo-peso",
-
-dica: "Considere consultar um nutricionista para uma dieta adequada."
-
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-} else if (imc < 24.99) {
-
-return {
-
-classificacao: "Peso normal",
-
-classe: "peso-normal",
-
-dica: "Mantenha uma alimentação equilibrada e pratique exercícios regularmente."
-
+.container {
+    width: 100%;
+    max-width: 500px;
 }
 
-} else if (imc < 29.99) {
-
-return {
-
-classificacao: "Sobrepeso",
-
-classe: "sobrepeso",
-
-dica: "Adote uma dieta saudável e aumente a atividade física."
-
+.calculator {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-} else if (imc < 34.99) {
-
-return {
-
-classificacao: "Obesidade Grau I",
-
-classe: "obesidade-grau-1",
-
-dica: "Procure orientação médica para um plano de perda de peso."
-
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 2.2em;
 }
 
-} else if (imc < 39.99) {
-
-return {
-
-classificacao: "Obesidade Grau II",
-
-classe: "obesidade-grau-2",
-
-dica: "É importante buscar ajuda profissional para um tratamento adequado."
-
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
 }
 
-} else {
-
-return {
-
-classificacao: "Obesidade Grau III",
-
-classe: "obesidade-grau-3",
-
-dica: "Procure um médico para avaliação e tratamento especializado."
-
+.input-group {
+    margin-bottom: 20px;
 }
 
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
 }
 
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-// Function para exibir Resultados
-
-function exibirResultados (imc, classificacao){
-
- 
-
-imcValorSpan.textContent = imc.toFixed(1)
-
- 
-
-classificacaoDiv.textContent = classificacao.classificacao
-
-classificacaoDiv.className = `classificacao ${classificacao.classe}` 
-
- 
-
-dicaDiv.textContent = classificacao.dica
-
- 
-
-resultadoDiv.classList.remove("hidden")
-
- 
-
-resultadoDiv.scrollIntoView({ behavior: 'smooth' })
-
- 
-
- 
-
+input:focus {
+    outline: none;
+    border-color: #667eea;
 }
 
-// function para validar peso e altura
-
-function validarDados(peso, altura) {
-
-if (isNaN(peso) || peso <= 0 || peso > 500) {
-
-alert("Por favor, insira um peso válido.")
-
-return false
-
+button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-if (isNaN(altura) || altura <= 0 || altura > 3) {
-
-alert("Por favor, insira uma altura válida.")
-
-return false
-
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-return true
-
+.resultado {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 15px;
+    background: #f8f9fa;
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
-pesoInput.addEventListener("input", function() 
-
-
-resultadoDiv.classList.add("hidden"
-
-
+.resultado.hidden {
+    display: none;
 }
 
- 
-
-
-alturaInput.addEventListener("input", function() 
-
-
-resultadoDiv.classList.add("hidden"
-
-
+.resultado h2 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
+.imc-valor {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.classificacao {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.dica {
+    color: #666;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* Cores para as classificações */
+.abaixo-peso {
+    background-color: #ffeb3b;
+    color: #ff9800;
+}
+
+.peso-normal {
+    background-color: #4caf50;
+    color: white;
+}
+
+.sobrepeso {
+    background-color: #ff9800;
+    color: white;
+}
+
+.obesidade-grau-1 {
+    background-color: #f44336;
+    color: white;
+}
+
+.obesidade-grau-2 {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.obesidade-grau-3 {
+    background-color: #b71c1c;
+    color: white;
+}
+
+.tabela-referencia {
+    margin-top: 40px;
+}
+
+.tabela-referencia h3 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Cores para a tabela de referência */
+.abaixo-peso {
+    background-color: #fff9c4;
+}
+
+.peso-normal {
+    background-color: #c8e6c9;
+}
+
+.sobrepeso {
+    background-color: #ffe0b2;
+}
+
+.obesidade-grau-1 {
+    background-color: #ffcdd2;
+}
+
+.obesidade-grau-2 {
+    background-color: #ef9a9a;
+}
+
+.obesidade-grau-3 {
+    background-color: #e57373;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .calculator {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .imc-valor {
+        font-size: 2.8em;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
